@@ -186,12 +186,15 @@ export default class Chatroom extends Component<ChatroomProps, ChatroomState> {
   };
 
   render() {
-    const { messages, isOpen, showWaitingBubble } = this.props;
+    const { messages, showWaitingBubble } = this.props;
     const messageGroups = this.groupMessages(messages);
 
     return (
-      <div className={classnames("chatroom", isOpen ? "open" : "closed")}>
-        <h3 onClick={this.props.onToggleChat}>{this.props.title}</h3>
+      <div className="chatroom open">
+        <div className="chat-title">
+          <a href="https://www.tfgm.com/public-transport/tram/zonal-faq" className="back-button"></a>
+          <h3>{this.props.title}</h3>
+        </div>
         <div className="chats" ref={this.chatsRef}>
           {messageGroups.map((group, i) => (
             <MessageGroup
@@ -211,7 +214,7 @@ export default class Chatroom extends Component<ChatroomProps, ChatroomState> {
             }
             ref={this.inputRef}
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="" />
           {this.props.speechRecognition != null ? (
             <SpeechInput
               language={this.props.speechRecognition}

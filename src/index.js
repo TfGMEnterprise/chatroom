@@ -16,6 +16,7 @@ const USERID_STORAGE_KEY = "simple-chatroom-cid";
 type ChatroomOptions = {
   host: string,
   title?: string,
+  submitButtonText?: string,
   welcomeMessage?: string,
   speechRecognition?: string,
   startMessage?: string,
@@ -40,6 +41,7 @@ window.Chatroom = function(options: ChatroomOptions) {
       userId={sessionUserId}
       host={options.host}
       title={options.title || "Chat"}
+      submitButtonText={options.submitButtonText || "Submit"}
       speechRecognition={options.speechRecognition}
       welcomeMessage={options.welcomeMessage}
       waitingTimeout={options.waitingTimeout}
@@ -60,7 +62,8 @@ window.Chatroom = function(options: ChatroomOptions) {
 
 type DemoChatroomOptions = {
   title: string,
-  container: HTMLElement
+  container: HTMLElement,
+  submitButtonText: string
 };
 
 window.DemoChatroom = function(options: DemoChatroomOptions) {
@@ -76,6 +79,7 @@ window.DemoChatroom = function(options: DemoChatroomOptions) {
         showWaitingBubble={showWaitingBubble}
         speechRecognition={null}
         isOpen={true}
+        submitButtonText={options.submitButtonText || "Submit"}
         title={options.title || "Chat"}
         onButtonClick={noop}
         onToggleChat={noop}
@@ -205,6 +209,7 @@ window.DebugChatroom = function(options: ChatroomOptions) {
       host={options.host}
       title={options.title || "Chat"}
       speechRecognition={options.speechRecognition}
+      submitButtonText={options.submitButtonText}
       welcomeMessage={options.welcomeMessage}
       waitingTimeout={options.waitingTimeout}
       pollingInterval={options.pollingInterval}

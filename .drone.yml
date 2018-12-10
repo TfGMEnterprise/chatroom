@@ -1,0 +1,24 @@
+pipeline:
+
+  # No tests yet
+  #  requirements and test:
+  #    image: python:3.6.6-stretch
+  #    environment:
+  #      - CODACY_PROJECT_TOKEN=${CODACY_PROJECT_TOKEN}
+  #    commands:
+  #      - pip install -r requirements.txt
+  #      - python -m spacy download en_core_web_sm
+  #      - pytest --cov=test_api
+  #      - coverage xml
+  #      - python-codacy-coverage -r coverage.xml
+  #    secrets: [ codacy_project_token ]
+
+  build and push to ecr:
+    image: plugins/ecr
+    repo: cxp-customer-chatroom
+    registry: 083622967111.dkr.ecr.us-east-1.amazonaws.com
+    region: eu-west-1
+    create_repository: true
+    tags:
+      - latest
+      - 0.1.${DRONE_BUILD_NUMBER}

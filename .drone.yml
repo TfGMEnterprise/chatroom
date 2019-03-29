@@ -22,3 +22,17 @@ pipeline:
     tags:
       - latest
       - 0.1.${DRONE_BUILD_NUMBER}
+    when:
+      instance: drone.core.tfgm.digital
+
+  build and push to ecr:
+    image: plugins/ecr
+    repo: cxp-customer-chatroom
+    registry: 050124427385.dkr.ecr.eu-west-1.amazonaws.com
+    region: eu-west-1
+    create_repository: true
+    tags:
+      - latest
+      - 0.1.${DRONE_BUILD_NUMBER}
+    when:
+      instance: drone.k8s.transport-for-greater-manchester.com
